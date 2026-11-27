@@ -68,30 +68,33 @@
 
 [Add more user stories as needed, each with an assigned priority]
 
-### Edge Cases
+### Edge Cases & Explicit UI States *(mandatory per Constitution)*
 
 <!--
-  ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right edge cases.
+  ACTION REQUIRED: Define how every interactive or asynchronous view handles all explicit states
+  (never leave the user staring at a blank screen) as well as viewport and accessibility boundaries.
 -->
 
-- What happens when [boundary condition]?
-- How does system handle [error scenario]?
+- **Loading State**: What skeleton, spinner, or progressive state renders while data or assets load?
+- **Empty State**: What helpful message or fallback renders when collections or results are empty?
+- **Error State**: How are network, validation, or runtime errors surfaced and recoverable?
+- **Success & Instant Feedback**: What immediate visual feedback confirms clicks, toggles, or submissions?
+- **Boundary & Viewport Conditions**: How does layout adapt across narrow mobile, tablet, and wide desktop viewports, or with long text/missing media?
 
 ## Requirements *(mandatory)*
 
 <!--
   ACTION REQUIRED: The content in this section represents placeholders.
-  Fill them out with the right functional requirements.
+  Fill them out with the right functional, UX, and accessibility requirements.
 -->
 
-### Functional Requirements
+### Functional, UX & Accessibility Requirements
 
-- **FR-001**: System MUST [specific capability, e.g., "allow users to create accounts"]
-- **FR-002**: System MUST [specific capability, e.g., "validate email addresses"]
-- **FR-003**: Users MUST be able to [key interaction, e.g., "reset their password"]
-- **FR-004**: System MUST [data requirement, e.g., "persist user preferences"]
-- **FR-005**: System MUST [behavior, e.g., "log all security events"]
+- **FR-001**: System MUST [specific user-facing capability]
+- **FR-002**: Views MUST render responsively mobile-first across mobile, tablet, and desktop viewports using centralized theme tokens (no hardcoded hex/pixel magic values)
+- **FR-003**: Interactive controls MUST provide immediate visual feedback ([specify disabled/busy/optimistic behavior]) and handle loading, empty, error, and success states explicitly
+- **FR-004**: Components MUST use semantic HTML (`<button>`, `<nav>`, `<main>`, `<label>`), support full keyboard navigation with visible focus indicators, meet WCAG 2.1 AA contrast ratios, and provide descriptive `aria-label`/`alt` text
+- **FR-005**: System MUST [data or state behavior]
 
 *Example of marking unclear requirements:*
 

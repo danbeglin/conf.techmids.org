@@ -47,28 +47,25 @@ description: "Task list template for feature implementation"
 
 ## Phase 1: Setup (Shared Infrastructure)
 
-**Purpose**: Project initialization and basic structure
+**Purpose**: Project initialization, strict typing, and design token setup
 
-- [ ] T001 Create project structure per implementation plan
-- [ ] T002 Initialize [language] project with [framework] dependencies
-- [ ] T003 [P] Configure linting and formatting tools
+- [ ] T001 Verify/create project directory structure per implementation plan
+- [ ] T002 Configure strict static typing and testing harness per plan.md
+- [ ] T003 [P] Register required design tokens/CSS variables in `tailwind.config.js` or `src/styles/` (zero magic values)
 
 ---
 
 ## Phase 2: Foundational (Blocking Prerequisites)
 
-**Purpose**: Core infrastructure that MUST be complete before ANY user story can be implemented
+**Purpose**: Shared types, data contracts, and base primitives that MUST be complete before ANY user story can be implemented
 
 **⚠️ CRITICAL**: No user story work can begin until this phase is complete
 
 Examples of foundational tasks (adjust based on your project):
 
-- [ ] T004 Setup database schema and migrations framework
-- [ ] T005 [P] Implement authentication/authorization framework
-- [ ] T006 [P] Setup API routing and middleware structure
-- [ ] T007 Create base models/entities that all stories depend on
-- [ ] T008 Configure error handling and logging infrastructure
-- [ ] T009 Setup environment configuration management
+- [ ] T004 Define strict static TypeScript interfaces/types for props, events, and state models in `src/types/`
+- [ ] T005 [P] Create shared pure UI primitives (e.g., loading/empty/error state wrappers, accessible focusable controls) in `src/components/`
+- [ ] T006 [P] Setup data-fetching or static data adapters decoupled from presentation components
 
 **Checkpoint**: Foundation ready - user story implementation can now begin in parallel
 
@@ -80,21 +77,19 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 1 (OPTIONAL - only if tests requested) ⚠️
+### User-Centric Tests for User Story 1 (include when tests are in scope) ⚠️
 
-> **NOTE: Write these tests FIRST, ensure they FAIL before implementation**
+> **NOTE: Write user-centric behavior tests FIRST (rendering, clicks, keyboard navigation, form validation), ensure they FAIL before implementation, and avoid testing internal implementation details**
 
-- [ ] T010 [P] [US1] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T011 [P] [US1] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T010 [P] [US1] Component behavior test (states, clicks, keyboard focus/ARIA) in `tests/components/[Component].test.tsx`
+- [ ] T011 [P] [US1] End-to-end user journey test across mobile/desktop viewports in `tests/e2e/[journey].spec.ts`
 
 ### Implementation for User Story 1
 
-- [ ] T012 [P] [US1] Create [Entity1] model in src/models/[entity1].py
-- [ ] T013 [P] [US1] Create [Entity2] model in src/models/[entity2].py
-- [ ] T014 [US1] Implement [Service] in src/services/[service].py (depends on T012, T013)
-- [ ] T015 [US1] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T016 [US1] Add validation and error handling
-- [ ] T017 [US1] Add logging for user story 1 operations
+- [ ] T012 [P] [US1] Build pure, strictly-typed presentational component(s) using semantic HTML and theme tokens in `src/components/[Component].tsx`
+- [ ] T013 [P] [US1] Implement mobile-first responsive layout (Flexbox/Grid + relative units) across mobile, tablet, and desktop
+- [ ] T014 [US1] Wire state/data container and explicit loading, empty, error, and success states in `src/pages/[page].tsx` (depends on T012)
+- [ ] T015 [US1] Add immediate visual interaction feedback (disabled/spinner/optimistic state) and verify keyboard navigation + `aria-label`/`alt` attributes
 
 **Checkpoint**: At this point, User Story 1 should be fully functional and testable independently
 
@@ -106,17 +101,17 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 2 (OPTIONAL - only if tests requested) ⚠️
+### User-Centric Tests for User Story 2 (include when tests are in scope) ⚠️
 
-- [ ] T018 [P] [US2] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T019 [P] [US2] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T018 [P] [US2] Component behavior test in `tests/components/[Component].test.tsx`
+- [ ] T019 [P] [US2] End-to-end user journey test in `tests/e2e/[journey].spec.ts`
 
 ### Implementation for User Story 2
 
-- [ ] T020 [P] [US2] Create [Entity] model in src/models/[entity].py
-- [ ] T021 [US2] Implement [Service] in src/services/[service].py
-- [ ] T022 [US2] Implement [endpoint/feature] in src/[location]/[file].py
-- [ ] T023 [US2] Integrate with User Story 1 components (if needed)
+- [ ] T020 [P] [US2] Build pure, strictly-typed UI component(s) using semantic HTML and theme tokens in `src/components/[Component].tsx`
+- [ ] T021 [US2] Implement mobile-first responsive styles and explicit UI states (`loading`, `empty`, `error`, `success`)
+- [ ] T022 [US2] Wire interactions and immediate visual feedback in `src/pages/[page].tsx`
+- [ ] T023 [US2] Integrate with User Story 1 components while preserving independent testability
 
 **Checkpoint**: At this point, User Stories 1 AND 2 should both work independently
 
@@ -128,16 +123,16 @@ Examples of foundational tasks (adjust based on your project):
 
 **Independent Test**: [How to verify this story works on its own]
 
-### Tests for User Story 3 (OPTIONAL - only if tests requested) ⚠️
+### User-Centric Tests for User Story 3 (include when tests are in scope) ⚠️
 
-- [ ] T024 [P] [US3] Contract test for [endpoint] in tests/contract/test_[name].py
-- [ ] T025 [P] [US3] Integration test for [user journey] in tests/integration/test_[name].py
+- [ ] T024 [P] [US3] Component behavior test in `tests/components/[Component].test.tsx`
+- [ ] T025 [P] [US3] End-to-end user journey test in `tests/e2e/[journey].spec.ts`
 
 ### Implementation for User Story 3
 
-- [ ] T026 [P] [US3] Create [Entity] model in src/models/[entity].py
-- [ ] T027 [US3] Implement [Service] in src/services/[service].py
-- [ ] T028 [US3] Implement [endpoint/feature] in src/[location]/[file].py
+- [ ] T026 [P] [US3] Build pure, strictly-typed UI component(s) using semantic HTML and theme tokens in `src/components/[Component].tsx`
+- [ ] T027 [US3] Implement mobile-first responsive styles and explicit UI states (`loading`, `empty`, `error`, `success`)
+- [ ] T028 [US3] Wire interactions and immediate visual feedback in `src/pages/[page].tsx`
 
 **Checkpoint**: All user stories should now be independently functional
 
@@ -149,14 +144,12 @@ Examples of foundational tasks (adjust based on your project):
 
 ## Phase N: Polish & Cross-Cutting Concerns
 
-**Purpose**: Improvements that affect multiple user stories
+**Purpose**: Accessibility, visual consistency, and performance checks across stories
 
-- [ ] TXXX [P] Documentation updates in docs/
-- [ ] TXXX Code cleanup and refactoring
-- [ ] TXXX Performance optimization across all stories
-- [ ] TXXX [P] Additional unit tests (if requested) in tests/unit/
-- [ ] TXXX Security hardening
-- [ ] TXXX Run quickstart.md validation
+- [ ] TXXX [P] Audit WCAG 2.1 AA contrast ratios, semantic landmarks, `aria-label`/`alt` text, and keyboard focus rings
+- [ ] TXXX [P] Audit components for zero hardcoded hex colors, pixel spacing, or untyped `any` props
+- [ ] TXXX Verify responsive mobile-first layouts across mobile, tablet, and desktop viewports
+- [ ] TXXX Run `npm run lint`, type-checking, and `quickstart.md` validation
 
 ---
 

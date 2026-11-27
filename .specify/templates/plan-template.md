@@ -40,7 +40,10 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+- [ ] **I. UI Architecture & Component Design**: Presentation components are small, pure, reusable, and decoupled from data/state logic; native browser APIs/HTML/CSS preferred over new dependencies (YAGNI); mobile-first responsive layout (Flexbox/Grid + relative units) planned across mobile, tablet, and desktop.
+- [ ] **II. User Experience & Visual Consistency**: Zero hardcoded hex colors, pixel spacing, or arbitrary font sizes—all styles map to `tailwind.config.js` or CSS variables; loading, empty, error, and success states explicitly designed; immediate visual feedback defined for every user action.
+- [ ] **III. Accessibility (a11y) (NON-NEGOTIABLE)**: Semantic HTML elements (`<button>`, `<nav>`, `<main>`, `<label>`) specified; full keyboard navigation and visible focus states covered; WCAG 2.1 AA contrast and descriptive `aria-label`/`alt` attributes accounted for.
+- [ ] **IV. Code Quality & Testing**: Strict static typing enforced for all component props, events, and state models; testing strategy prioritizes user-centric component and E2E behavior over internal implementation details.
 
 ## Project Structure
 
@@ -60,24 +63,24 @@ specs/[###-feature]/
 <!--
   ACTION REQUIRED: Replace the placeholder tree below with the concrete layout
   for this feature. Delete unused options and expand the chosen structure with
-  real paths (e.g., apps/admin, packages/something). The delivered plan must
-  not include Option labels.
+  real paths (e.g., src/components/Header.tsx, src/pages/index.tsx). The delivered
+  plan must not include Option labels.
 -->
 
 ```text
-# [REMOVE IF UNUSED] Option 1: Single project (DEFAULT)
+# [REMOVE IF UNUSED] Option 1: Frontend UI application (DEFAULT for conf.techmids.org)
 src/
-├── models/
-├── services/
-├── cli/
-└── lib/
+├── components/          # Pure, reusable single-responsibility UI components
+├── pages/               # Next.js route views and data wiring
+├── styles/              # Global CSS variables and Tailwind layers
+├── types/               # Strict static type definitions for props, events, and models
+└── images/              # Static assets
 
 tests/
-├── contract/
-├── integration/
-└── unit/
+├── components/          # User-centric component behavior tests
+└── e2e/                 # End-to-end user journey and accessibility tests
 
-# [REMOVE IF UNUSED] Option 2: Web application (when "frontend" + "backend" detected)
+# [REMOVE IF UNUSED] Option 2: Full-stack Web application (when separate backend detected)
 backend/
 ├── src/
 │   ├── models/
@@ -89,15 +92,8 @@ frontend/
 ├── src/
 │   ├── components/
 │   ├── pages/
-│   └── services/
+│   └── styles/
 └── tests/
-
-# [REMOVE IF UNUSED] Option 3: Mobile + API (when "iOS/Android" detected)
-api/
-└── [same as backend above]
-
-ios/ or android/
-└── [platform-specific structure: feature modules, UI flows, platform tests]
 ```
 
 **Structure Decision**: [Document the selected structure and reference the real
